@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=GND Pin=M1-1
+Removed Pin From Net: NetName=NetSpeaker_1 Pin=SYN6288-1
+Removed Member From Class: ClassName=智能风扇原理图 Member=M1
+Added Component: Designator=USB(USB-A/S_A)
+Added Pin To Net: NetName=3.3V Pin=SYN6288-1
+Added Pin To Net: NetName=NetSpeaker_1 Pin=SYN6288-1
+Added Pin To Net: NetName=NetSpeaker_2 Pin=SYN6288-2
+Added Pin To Net: NetName=GND Pin=USB-4
+Added Pin To Net: NetName=GND Pin=USB-4
+Added Pin To Net: NetName=GND Pin=USB-4
+Added Pin To Net: NetName=NetP6_4 Pin=P6-4
+Added Pin To Net: NetName=NetP6_4 Pin=USB-1
+Added Net: Name=NetP6_4
+Added Member To Class: ClassName=智能风扇原理图 Member=Component USB
+Added Room: Name=智能风扇原理图

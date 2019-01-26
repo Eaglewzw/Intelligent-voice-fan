@@ -1,0 +1,105 @@
+C51 COMPILER V9.00   DELAY                                                                 10/01/2018 10:15:36 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE DELAY
+OBJECT MODULE PLACED IN ..\obj\delay.obj
+COMPILER INVOKED BY: F:\KEIL5\C51\BIN\C51.EXE ..\code\delay.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\code) DEBUG OBJEC
+                    -TEXTEND PRINT(.\delay.lst) OBJECT(..\obj\delay.obj)
+
+line level    source
+
+   1          #include "delay.h"
+   2          
+   3          void Delay200us(void)           //@22.1184MHz
+   4          {
+   5   1              unsigned char i, j;
+   6   1              _nop_();
+   7   1              _nop_();
+   8   1              i = 5;
+   9   1              j = 73;
+  10   1              do
+  11   1              {
+  12   2                      while (--j);
+  13   2              } while (--i);
+  14   1      }
+  15          
+  16          void  delay(unsigned long uldata)//@22.1184MHz
+  17          {
+  18   1              while(uldata--)
+  19   1              Delay200us();
+  20   1      }
+  21          
+  22          void Delay200ms(void)           //@22.1184MHz
+  23          {
+  24   1              unsigned char i, j, k;
+  25   1      
+  26   1              i = 17;
+  27   1              j = 208;
+  28   1              k = 27;
+  29   1              do
+  30   1              {
+  31   2                      do
+  32   2                      {
+  33   3                              while (--k);
+  34   3                      } while (--j);
+  35   2              } while (--i);
+  36   1      }
+  37          
+  38          
+  39          
+  40          
+  41          
+  42          /*------------------------------------------------
+  43           uS延时函数，含有输入参数 unsigned char t，无返回值
+  44           unsigned char 是定义无符号字符变量，其值的范围是
+  45           0~255 这里使用晶振12M，精确延时请使用汇编,大致延时
+  46           长度如下 T=tx2+5 uS 
+  47          ------------------------------------------------*/
+  48          //void DelayUs2x(unsigned char t)
+  49          //{ 
+  50          //  while(--t);
+  51          //}
+  52          /*------------------------------------------------
+  53           mS延时函数，含有输入参数 unsigned char t，无返回值
+  54           unsigned char 是定义无符号字符变量，其值的范围是
+C51 COMPILER V9.00   DELAY                                                                 10/01/2018 10:15:36 PAGE 2   
+
+  55           0~255 这里使用晶振12M，精确延时请使用汇编
+  56          ------------------------------------------------*/
+  57          //void DelayMs(unsigned char t)
+  58          //{
+  59          //    while(t--)
+  60          //      {
+  61          //       //大致延时1mS
+  62          //       DelayUs2x(245);
+  63          //               DelayUs2x(245);
+  64          //      }
+  65          //}
+  66          
+  67          
+  68          void LCD_Delay(uint ms)
+  69          {
+  70   1       while(ms--)
+  71   1              {
+  72   2            uchar i;
+  73   2                for(i=0;i<250;i++)  
+  74   2                 {
+  75   3                  _nop_();_nop_();
+  76   3                      _nop_();_nop_();
+  77   3                 }
+  78   2              }
+  79   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     84    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----       5
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

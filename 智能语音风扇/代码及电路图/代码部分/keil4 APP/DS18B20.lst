@@ -1,0 +1,103 @@
+C51 COMPILER V9.00   DS18B20                                                               10/01/2018 10:15:34 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE DS18B20
+OBJECT MODULE PLACED IN ..\obj\DS18B20.obj
+COMPILER INVOKED BY: F:\KEIL5\C51\BIN\C51.EXE ..\code\DS18B20.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\code) DEBUG OBJ
+                    -ECTEXTEND PRINT(.\DS18B20.lst) OBJECT(..\obj\DS18B20.obj)
+
+line level    source
+
+   1          #include"DS18B20.h"
+   2          
+   3          
+   4          void delay_us(uchar us)
+   5          {
+   6   1              uint i=2;
+   7   1              while(i--)
+   8   1              while(us--); 
+   9   1      }
+  10          
+  11          bit ds_init()//单总线初始化时序
+  12          {
+  13   1              bit i;
+  14   1              ds=1;
+  15   1              _nop_();
+  16   1              ds=0;
+  17   1              delay_us(75);
+  18   1              ds=1;
+  19   1              delay_us(4);
+  20   1              i=ds;
+  21   1              delay_us(20); 
+  22   1              ds=1;
+  23   1              _nop_();
+  24   1              return (i);
+  25   1      }
+  26          
+  27          void write_byte(uchar dat)//DS18B20写时序
+  28          {
+  29   1              uchar i;
+  30   1              for(i=0;i<8;i++)
+  31   1              {
+  32   2                        ds= 0;
+  33   2                        _nop_();
+  34   2                        ds= dat & 0x01;
+  35   2                        delay_us(10);//76.95us
+  36   2                        ds= 1;
+  37   2                        _nop_();
+  38   2                        dat>>=1;
+  39   2              }
+  40   1      }
+  41          uchar read_byte()//DS18B20读时序
+  42          {
+  43   1              uchar i, j, dat;
+  44   1              for(i=0;i<8;i++)
+  45   1              {
+  46   2                ds= 0;
+  47   2                _nop_();_nop_();//产生读时序
+  48   2                ds= 1;
+  49   2                _nop_();_nop_();//释放总线
+  50   2                j=ds;
+  51   2                delay_us(10);//76.95us
+  52   2                ds=1;
+  53   2                _nop_();_nop_();
+  54   2                dat=(j<<7)|(dat>>1); 
+C51 COMPILER V9.00   DS18B20                                                               10/01/2018 10:15:34 PAGE 2   
+
+  55   2              }
+  56   1              return (dat);
+  57   1      }
+  58          
+  59          
+  60          uint ReadTemperature(void)
+  61          {
+  62   1              uint i;
+  63   1              uchar L,M;
+  64   1              ds_init();//初始化DS18B20
+  65   1              write_byte(0xcc);//发送跳跃ROM指令
+  66   1              write_byte(0x44);//发送温度转换指令
+  67   1              ds_init();//初始化DS18B20
+  68   1              write_byte(0xcc);//发送跳跃ROM指令
+  69   1              write_byte(0xbe);//读取DS18B20暂存器值
+  70   1              L = read_byte();
+  71   1              M = read_byte();
+  72   1              i = M;
+  73   1              i <<= 8;
+  74   1              i |= L;      
+  75   1              i = i * 0.0625*10+0.5;//
+  76   1              return i;
+  77   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    207    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----       2
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

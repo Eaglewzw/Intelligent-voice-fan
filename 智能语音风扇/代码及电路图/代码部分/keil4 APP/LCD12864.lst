@@ -1,0 +1,376 @@
+C51 COMPILER V9.00   LCD12864                                                              10/01/2018 10:24:43 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE LCD12864
+OBJECT MODULE PLACED IN ..\obj\LCD12864.obj
+COMPILER INVOKED BY: F:\KEIL5\C51\BIN\C51.EXE ..\code\LCD12864.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\code) DEBUG OB
+                    -JECTEXTEND PRINT(.\LCD12864.lst) OBJECT(..\obj\LCD12864.obj)
+
+line level    source
+
+   1          #include "LCD12864.h"
+   2          
+   3          uchar code table_week[12]={0,3,3,6,1,4,6,2,5,0,3,5};
+   4          uchar Fanflag=0;//风扇标志位
+   5          
+   6          
+   7          
+   8          
+   9          //===================字体1==========================
+  10          /************************************************************************************/
+  11          unsigned char code num16321[11][64]={   
+  12          {// 图片数字0
+  13          0x00,0x00,0x3F,0xFC,0x5F,0xFA,0x6F,0xF6,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,
+  14          0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x60,0x06,0x40,0x02,0x00,0x00,
+  15          0x40,0x02,0x60,0x06,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,
+  16          0x70,0x0E,0x70,0x0E,0x70,0x0E,0x6F,0xF6,0x5F,0xFA,0x3F,0xFC,0x00,0x00,0x00,0x00},       
+  17          {// 图片数字1
+  18          0x00,0x00,0x00,0x20,0x00,0x60,0x00,0xE0,0x00,0xE0,0x00,0xE0,0x00,0xE0,0x00,0xE0,
+  19          0x00,0xE0,0x00,0xE0,0x00,0xE0,0x00,0xE0,0x00,0x60,0x00,0x20,0x00,0x00,0x00,0x20,
+  20          0x00,0x60,0x00,0xE0,0x00,0xE0,0x00,0xE0,0x00,0xE0,0x00,0xE0,0x00,0xE0,0x00,0xE0,
+  21          0x00,0xE0,0x00,0xE0,0x00,0xE0,0x00,0x60,0x00,0x20,0x00,0x00,0x00,0x00,0x00,0x00},
+  22          {// 图片数字2
+  23          0x00,0x00,0x3F,0xFC,0x1F,0xFA,0x0F,0xF6,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,
+  24          0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x06,0x1F,0xFA,0x3F,0xFC,
+  25          0x5F,0xF8,0x60,0x00,0x70,0x00,0x70,0x00,0x70,0x00,0x70,0x00,0x70,0x00,0x70,0x00,
+  26          0x70,0x00,0x70,0x00,0x70,0x00,0x6F,0xF8,0x5F,0xFC,0x3F,0xFE,0x00,0x00,0x00,0x00},       
+  27          {// 图片数字3
+  28          0x00,0x00,0x3F,0xFC,0x1F,0xFA,0x0F,0xF6,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,
+  29          0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x06,0x1F,0xFA,0x3F,0xFC,
+  30          0x1F,0xFA,0x00,0x06,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,
+  31          0x00,0x0E,0x00,0x0E,0x00,0x0E,0x0F,0xF6,0x1F,0xFA,0x3F,0xFC,0x00,0x00,0x00,0x00},       
+  32          {// 图片数字4
+  33          0x00,0x00,0x40,0x02,0x60,0x06,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,
+  34          0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x60,0x06,0x5F,0xFA,0x3F,0xFC,
+  35          0x1F,0xFA,0x00,0x06,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,
+  36          0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x06,0x00,0x02,0x00,0x00,0x00,0x00},       
+  37          {// 图片数字5
+  38          0x00,0x00,0x3F,0xFC,0x5F,0xF8,0x6F,0xF0,0x70,0x00,0x70,0x00,0x70,0x00,0x70,0x00,
+  39          0x70,0x00,0x70,0x00,0x70,0x00,0x70,0x00,0x70,0x00,0x60,0x00,0x5F,0xF8,0x3F,0xFC,
+  40          0x1F,0xFA,0x00,0x06,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,
+  41          0x00,0x0E,0x00,0x0E,0x00,0x0E,0x0F,0xF6,0x1F,0xFA,0x3F,0xFC,0x00,0x00,0x00,0x00},       
+  42          {// 图片数字6
+  43          0x00,0x00,0x3F,0xFC,0x5F,0xF8,0x6F,0xF0,0x70,0x00,0x70,0x00,0x70,0x00,0x70,0x00,
+  44          0x70,0x00,0x70,0x00,0x70,0x00,0x70,0x00,0x70,0x00,0x60,0x00,0x5F,0xF8,0x3F,0xFC,
+  45          0x5F,0xFA,0x60,0x06,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,
+  46          0x70,0x0E,0x70,0x0E,0x70,0x0E,0x6F,0xF6,0x5F,0xFA,0x3F,0xFC,0x00,0x00,0x00,0x00},       
+  47          {// 图片数字7
+  48          0x00,0x00,0x3F,0xFC,0x1F,0xFA,0x0F,0xF6,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,
+  49          0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x06,0x00,0x02,0x00,0x00,
+  50          0x00,0x02,0x00,0x06,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,
+  51          0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x06,0x00,0x02,0x00,0x00,0x00,0x00,0x00,0x00},
+  52          {// 图片数字8
+  53          0x00,0x00,0x3F,0xFC,0x5F,0xFA,0x6F,0xF6,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,
+  54          0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x60,0x06,0x5F,0xFA,0x3F,0xFC,
+C51 COMPILER V9.00   LCD12864                                                              10/01/2018 10:24:43 PAGE 2   
+
+  55          0x5F,0xFA,0x60,0x06,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,
+  56          0x70,0x0E,0x70,0x0E,0x70,0x0E,0x6F,0xF6,0x5F,0xFA,0x3F,0xFC,0x00,0x00,0x00,0x00},       
+  57          {// 图片数字9
+  58          0x00,0x00,0x3F,0xFC,0x5F,0xFA,0x6F,0xF6,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,
+  59          0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x70,0x0E,0x60,0x06,0x5F,0xFA,0x3F,0xFC,
+  60          0x1F,0xFA,0x00,0x06,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,0x00,0x0E,
+  61          0x00,0x0E,0x00,0x0E,0x00,0x0E,0x1F,0xF6,0x3F,0xFA,0x7F,0xFC,0x00,0x00,0x00,0x00},       
+  62          {// 图片":"     10
+  63          //6X6方点
+  64          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x07,0xE0,0x07,0xE0,
+  65          0x07,0xE0,0x07,0xE0,0x07,0xE0,0x07,0xE0,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  66          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x07,0xE0,0x07,0xE0,0x07,0xE0,0x07,0xE0,
+  67          0x07,0xE0,0x07,0xE0,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}
+  68          };
+  69          
+  70          uchar code kong3216[]={
+  71          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x07,0xE0,0x07,0xE0,
+  72          0x07,0xE0,0x07,0xE0,0x07,0xE0,0x07,0xE0,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  73          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x07,0xE0,0x07,0xE0,0x07,0xE0,0x07,0xE0,
+  74          0x07,0xE0,0x07,0xE0,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+  75          };
+  76          
+  77          uchar code wd[]={0x00,0x00,0x30,0x00,0x48,0x00,0x49,0xC0,0x33,0xE8,0x06,0x38,0x0C,0x18,0x0C,0x08,
+  78          0x0C,0x00,0x0C,0x00,0x0C,0x00,0x0C,0x00,0x06,0x08,0x03,0x10,0x01,0xE0,0x00,0x00}; //"℃"    
+  79          uchar code wdj[]=
+  80          {0x00,0x00,0x01,0x80,0x02,0x40,0x02,0x40,0x02,0xC0,0x02,0x40,0x02,0xC0,0x02,0x40,
+  81          0x02,0xC0,0x02,0x40,0x03,0xC0,0x07,0xE0,0x0F,0xF0,0x0F,0xF0,0x07,0xE0,0x03,0xC0};       //温度计图标
+  82          
+  83          uchar code fan[]={
+  84          0X00,0X00,0X03,0XC0,0X08,0X10,0X03,0X00,0X13,0X88,0X00,0X00,0X01,0XF0,0X07,0X70,
+  85          0X16,0X08,0X06,0X00,0X04,0X20,0X01,0X80,0X00,0X00,0X03,0XC0,0X07,0XE0,0X00,0X00,
+  86          };
+  87          
+  88          
+  89          
+  90          void ClearScreen(void)
+  91          {
+  92   1              uchar i,j;
+  93   1              lcd_wcmd(0x34);
+  94   1              for(i=0;i<32;i++)
+  95   1              {
+  96   2                      
+  97   2                      lcd_wcmd(0x80+i);
+  98   2                      lcd_wcmd(0x80);
+  99   2                      for(j=0;j<32;j++)
+ 100   2                      lcd_wdat(0x00); 
+ 101   2              }
+ 102   1      }
+ 103          
+ 104          
+ 105          /*******************************************************************/
+ 106          /*                                                                 */
+ 107          /*检查LCD忙状态                                                    */
+ 108          /*lcd_busy为1时，忙，等待。lcd-busy为0时,闲，可写指令与数据。      */
+ 109          /*                                                                 */
+ 110          /*******************************************************************/
+ 111          void busy()
+ 112          {
+ 113   1         LCD_RS=0; LCD_RW=1; LCD_EN=1;
+ 114   1         P1=0xff;
+ 115   1         while((P1&0x80)==0x80);
+ 116   1         LCD_EN=0;
+C51 COMPILER V9.00   LCD12864                                                              10/01/2018 10:24:43 PAGE 3   
+
+ 117   1      }
+ 118          /*******************************************************************/
+ 119          /*                                                                 */
+ 120          /*写指令数据到LCD                                                  */
+ 121          /*RS=L，RW=L，E=高脉冲，D0-D7=指令码。                             */
+ 122          /*                                                                 */
+ 123          /*******************************************************************/
+ 124          void lcd_wcmd(uchar cmd)
+ 125          {                          
+ 126   1          busy();
+ 127   1          LCD_RS=0;
+ 128   1          LCD_RW=0;
+ 129   1          LCD_EN=0;
+ 130   1          P1=cmd;
+ 131   1          delayNOP();
+ 132   1          LCD_EN=1;
+ 133   1          delayNOP();
+ 134   1          LCD_EN=0;  
+ 135   1      }
+ 136          /*******************************************************************/
+ 137          /*                                                                 */
+ 138          /*写显示数据到LCD                                                  */
+ 139          /*RS=H，RW=L，E=高脉冲，D0-D7=数据。                               */
+ 140          /*                                                                 */
+ 141          /*******************************************************************/
+ 142          void lcd_wdat(uchar dat)
+ 143          {                          
+ 144   1          busy();
+ 145   1          LCD_RS=1;
+ 146   1          LCD_RW=0;
+ 147   1          LCD_EN=0;
+ 148   1          P1=dat;
+ 149   1          delayNOP();
+ 150   1          LCD_EN=1;
+ 151   1          delayNOP();
+ 152   1          LCD_EN=0; 
+ 153   1      }
+ 154          /*******************************************************************/
+ 155          /*                                                                 */
+ 156          /*  LCD初始化设定                                                  */
+ 157          /*                                                                 */
+ 158          /*******************************************************************/
+ 159          void lcd_init()
+ 160          { 
+ 161   1          
+ 162   1          lcd_wcmd(0x30);      
+ 163   1          LCD_Delay(5);      //重复操作，因为该单片机运行速度较快@22.1184MHz
+ 164   1        
+ 165   1              lcd_wcmd(0x02);      
+ 166   1          LCD_Delay(5);
+ 167   1      
+ 168   1      
+ 169   1              lcd_wcmd(0x0C);      
+ 170   1          LCD_Delay(5);
+ 171   1      
+ 172   1              lcd_wcmd(0x06);      
+ 173   1          LCD_Delay(5);
+ 174   1      
+ 175   1              lcd_wcmd(0x01);      
+ 176   1          LCD_Delay(5);                       
+ 177   1      }
+ 178          
+C51 COMPILER V9.00   LCD12864                                                              10/01/2018 10:24:43 PAGE 4   
+
+ 179          /*******************************************
+ 180          函数名称:Draw_PM
+ 181          功    能:在整个液晶屏幕上画图
+ 182          参    数:无
+ 183          返回值  :无
+ 184          ********************************************/
+ 185          //void Draw_PM(const uchar *ptr)
+ 186          //{
+ 187          //    uchar i,j,k;
+ 188          //      lcd_wcmd(0x34);        //打开扩展指令集
+ 189          //      i = 0x80;            
+ 190          //      for(j = 0;j < 32;j++)
+ 191          //      {
+ 192          //        lcd_wcmd(i++);
+ 193          //        lcd_wcmd(0x80);
+ 194          //              for(k = 0;k < 16;k++)
+ 195          //              {
+ 196          //                  lcd_wdat(*ptr++);
+ 197          //              }
+ 198          //      }
+ 199          //      i = 0x80;
+ 200          //      for(j = 0;j < 32;j++)
+ 201          //      {
+ 202          //          lcd_wcmd(i++);
+ 203          //        lcd_wcmd(0x88);  
+ 204          //              for(k = 0;k < 16;k++)
+ 205          //              {
+ 206          //                  lcd_wdat(*ptr++);
+ 207          //              } 
+ 208          //      }  
+ 209          //    lcd_wcmd(0x36);     //打开绘图显示     
+ 210          //      lcd_wcmd(0x30);        //回到基本指令集
+ 211          //}
+ 212          
+ 213          void displayDigital_12864(uchar y,uchar x,uchar shu)
+ 214          {
+ 215   1              uchar a,b,Address;
+ 216   1              a=shu/10;
+ 217   1              b=shu%10;
+ 218   1              if(y==1){Address=0x80+x;}             //Y判断第几行,X判断第几列,0x80为液晶行初始地址
+ 219   1              if(y==2){Address=0x90+x;}          
+ 220   1              if(y==3){Address=0x88+x;} 
+ 221   1              if(y==4){Address=0x98+x;} 
+ 222   1              lcd_wcmd(Address);                //写入地址命令到LCD12864
+ 223   1              lcd_wdat(0x30+a);
+ 224   1              lcd_wdat(0x30+b);
+ 225   1      
+ 226   1      }
+ 227          
+ 228          void display_12864(uchar y,uchar x,uchar *z)
+ 229          { 
+ 230   1              uchar Address;
+ 231   1              if(y==1){Address=0x80+x;}                 //Y判断第几行,X判断第几列,0x80为液晶行初始地址
+ 232   1              if(y==2){Address=0x90+x;}          
+ 233   1              if(y==3){Address=0x88+x;} 
+ 234   1              if(y==4){Address=0x98+x;} 
+ 235   1              lcd_wcmd(Address);                //写入地址命令到LCD12864      
+ 236   1              while(*z!='\0')                                       //写入显示数据的大小
+ 237   1              {               
+ 238   2                      lcd_wdat(*z++);                   //写入显示数据到LCD12864                                        
+ 239   2              }  
+ 240   1      }
+C51 COMPILER V9.00   LCD12864                                                              10/01/2018 10:24:43 PAGE 5   
+
+ 241          
+ 242          
+ 243          
+ 244          void displaypicture_12864(uchar y,uchar x,uchar *picture,uchar hight,uchar wide)
+ 245          {
+ 246   1              uchar line,row;
+ 247   1              lcd_wcmd(0x36);
+ 248   1              if(wide%8==0)
+ 249   1                      wide=wide/8;
+ 250   1              else
+ 251   1                      wide=wide/8+1;
+ 252   1              for(line=0;line<hight;line++)
+ 253   1              {
+ 254   2                      if(y+line>31)
+ 255   2                      {
+ 256   3                              lcd_wcmd(0x80+y+line-32);
+ 257   3                              lcd_wcmd(0x80+x+8);     
+ 258   3              
+ 259   3                      }
+ 260   2                      else
+ 261   2                      {
+ 262   3                              lcd_wcmd(0x80+y+line);
+ 263   3                              lcd_wcmd(0x80+x);
+ 264   3                      }
+ 265   2                      for(row=0;row<wide;row++)
+ 266   2                      {
+ 267   3                              lcd_wdat(picture[line*wide+row]);
+ 268   3                      }
+ 269   2              }
+ 270   1              lcd_wcmd(0x30);
+ 271   1      }
+ 272          extern uchar sfm[14];
+ 273          void DisplayTime()
+ 274          {
+ 275   1                      uchar Str[40];
+ 276   1                      uchar a,Year,Month,Day,temp;
+ 277   1                      temp=ReadTemperature();
+ 278   1                      
+ 279   1                      displaypicture_12864(16,0,num16321[sfm[8]],32,16);
+ 280   1                      displaypicture_12864(16,1,num16321[sfm[9]],32,16);//时
+ 281   1              
+ 282   1                              
+ 283   1                      displaypicture_12864(16,3,num16321[sfm[10]],32,16);//分
+ 284   1                      displaypicture_12864(16,4,num16321[sfm[11]],32,16);
+ 285   1                      
+ 286   1                      displaypicture_12864(16,6,num16321[sfm[12]],32,16); 
+ 287   1                      displaypicture_12864(16,7,num16321[sfm[13]],32,16); //秒
+ 288   1                      
+ 289   1                      displaypicture_12864(17,2,num16321[10],32,16);
+ 290   1                      displaypicture_12864(17,5,num16321[10],32,16);
+ 291   1                      //displaypicture_12864(17,2,kong3216,32,16);
+ 292   1                      //displaypicture_12864(17,5,kong3216,32,16);
+ 293   1                      
+ 294   1                  if(sfm[10]==0&&sfm[11]==0&&sfm[12]==0&&sfm[13]==0)
+ 295   1                      {
+ 296   2                               sprintf(Str,"现在时间%d整",sfm[8]+sfm[9]);
+ 297   2                               SYN_FrameInfo(0,Str);
+ 298   2                      }
+ 299   1                      if(Fanflag==0||Fanflag==4) {read_time();display_12864(4,1,"关闭");}
+ 300   1                      if(Fanflag==1) {read_time();display_12864(4,1,"打开"); }
+ 301   1                      if(Fanflag==2) {read_time();display_12864(4,1,"高速");}
+ 302   1                      if(Fanflag==3) {read_time();display_12864(4,1,"低速");}
+C51 COMPILER V9.00   LCD12864                                                              10/01/2018 10:24:43 PAGE 6   
+
+ 303   1                      if(Fanflag==5) {read_time();display_12864(4,1,"Wait");} 
+ 304   1                      
+ 305   1                      
+ 306   1                      displaypicture_12864(48,0,fan,16,16);//风扇图标
+ 307   1                      displaypicture_12864(48,4,wdj,16,16);//摄氏度
+ 308   1                      displaypicture_12864(48,7,wd,16,16);//温度      
+ 309   1      
+ 310   1                      Year=sfm[0]*10+sfm[1];
+ 311   1                      Month=sfm[4]*10+sfm[5];
+ 312   1                      Day=sfm[6]*10+sfm[7];
+ 313   1                      a=Conver_week(Year,Month,Day);
+ 314   1                  displayDigital_12864(1,0,20);
+ 315   1                  displayDigital_12864(1,1,Year);//显示年
+ 316   1                  lcd_wdat('-');//显示‘-’
+ 317   1                  lcd_wdat(Month/10+0x30);
+ 318   1                      lcd_wdat(Month%10+0x30);//显示月
+ 319   1                      lcd_wdat('-');  
+ 320   1                      displayDigital_12864(1,4,Day);
+ 321   1      
+ 322   1                      switch(a)
+ 323   1                      {
+ 324   2                              case 0:{display_12864(1,6,"周日");} break; //0=星期日
+ 325   2                              case 1:{display_12864(1,6,"周一");}break;
+ 326   2                              case 2:{display_12864(1,6,"周二");}break;
+ 327   2                              case 3:{display_12864(1,6,"周三");}break;
+ 328   2                              case 4:{display_12864(1,6,"周四");}break;
+ 329   2                              case 5:{display_12864(1,6,"周五");}break;
+ 330   2                              case 6:{display_12864(1,6,"周六");}break;
+ 331   2                              default:break;
+ 332   2                      }
+ 333   1                      lcd_wcmd(0x98+5);
+ 334   1                      lcd_wdat(temp%1000/100+0x30);
+ 335   1                      lcd_wdat(temp%100/10+0x30 );
+ 336   1                      lcd_wdat('.');
+ 337   1                      lcd_wdat(temp%10+0x30);
+ 338   1      }
+ 339          
+ 340          
+ 341          
+ 342          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1234    ----
+   CONSTANT SIZE    =    948    ----
+   XDATA SIZE       =      1      58
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

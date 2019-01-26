@@ -1,0 +1,27 @@
+Removed Pin From Net: NetName=P17 Pin=P1-1
+Removed Pin From Net: NetName=P16 Pin=P1-2
+Removed Pin From Net: NetName=P15 Pin=P1-3
+Removed Pin From Net: NetName=P14 Pin=P1-4
+Removed Pin From Net: NetName=P13 Pin=P1-5
+Removed Pin From Net: NetName=P12 Pin=P1-6
+Removed Pin From Net: NetName=P11 Pin=P1-7
+Removed Pin From Net: NetName=P10 Pin=P1-8
+Removed Pin From Net: NetName=NetSpeaker_1 Pin=SYN6288-1
+Removed Member From Class: ClassName=智能风扇原理图 Member=P1
+Change Component Description : Designator=P4 Old Description=5P接插件 New Description=
+Change Component Description : Designator=P3 Old Description=7P接插件 New Description=
+Change Component Description : Designator=P2 Old Description=8P接插件 New Description=
+Added Component: Designator=JP?(XH2.54-WI-8P)
+Added Pin To Net: NetName=P10 Pin=JP?-1
+Added Pin To Net: NetName=P11 Pin=JP?-2
+Added Pin To Net: NetName=P12 Pin=JP?-3
+Added Pin To Net: NetName=P13 Pin=JP?-4
+Added Pin To Net: NetName=P14 Pin=JP?-5
+Added Pin To Net: NetName=P15 Pin=JP?-6
+Added Pin To Net: NetName=P16 Pin=JP?-7
+Added Pin To Net: NetName=P17 Pin=JP?-8
+Added Pin To Net: NetName=3.3V Pin=SYN6288-1
+Added Pin To Net: NetName=NetSpeaker_1 Pin=SYN6288-1
+Added Pin To Net: NetName=NetSpeaker_2 Pin=SYN6288-2
+Added Member To Class: ClassName=智能风扇原理图 Member=Component JP? HDR-1X8
+Added Room: Name=智能风扇原理图

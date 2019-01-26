@@ -1,0 +1,72 @@
+Change Component DesignItemId : Designator=B2 Old DesignItemId= New DesignItemId=Battery
+Change Component DesignItemId : Designator=IC1 Old DesignItemId= New DesignItemId=DS1302
+Change Component DesignItemId : Designator=JPX Old DesignItemId= New DesignItemId=Header 2
+Change Component DesignItemId : Designator=Speaker Old DesignItemId= New DesignItemId=Header 2
+Change Component DesignItemId : Designator=SYN6288 Old DesignItemId= New DesignItemId=Header 2
+Change Component DesignItemId : Designator=JP1 Old DesignItemId= New DesignItemId=Header 2X2
+Change Component DesignItemId : Designator=P5 Old DesignItemId= New DesignItemId=Header 2X2A
+Change Component DesignItemId : Designator=P6 Old DesignItemId= New DesignItemId=Header 2X2A
+Change Component DesignItemId : Designator=SYN6288 Old DesignItemId= New DesignItemId=Header 5
+Change Component DesignItemId : Designator=U1 Old DesignItemId= New DesignItemId=LCD12864
+Change Component DesignItemId : Designator=S1 Old DesignItemId= New DesignItemId=MTS-10x
+Change Component DesignItemId : Designator=CON1 Old DesignItemId= New DesignItemId=P-DC
+Change Component DesignItemId : Designator=P7 Old DesignItemId= New DesignItemId=Pin 3
+Change Component DesignItemId : Designator=PD Old DesignItemId= New DesignItemId=Pin 4
+Change Component DesignItemId : Designator=P4 Old DesignItemId= New DesignItemId=Pin 5
+Change Component DesignItemId : Designator=P3 Old DesignItemId= New DesignItemId=Pin 7
+Change Component DesignItemId : Designator=P1 Old DesignItemId= New DesignItemId=Pin 8
+Change Component DesignItemId : Designator=P2 Old DesignItemId= New DesignItemId=Pin 8
+Change Component DesignItemId : Designator=R1 Old DesignItemId= New DesignItemId=R-CRR
+Change Component DesignItemId : Designator=R4 Old DesignItemId= New DesignItemId=R-CRR
+Change Component DesignItemId : Designator=R5 Old DesignItemId= New DesignItemId=R-CRR
+Change Component DesignItemId : Designator=R6 Old DesignItemId= New DesignItemId=R-CRR
+Change Component DesignItemId : Designator=RP1 Old DesignItemId= New DesignItemId=RP-ID
+Change Component DesignItemId : Designator=USB Old DesignItemId= New DesignItemId=USB-A/S
+Change Component DesignItemId : Designator=X1 Old DesignItemId= New DesignItemId=XTAL-2P
+Change Component Footprint: Designator=U1 Old Footprint=HDR2.54-1X20 New Footprint=LCD12864
+Change Component Description : Designator=JP1 Old Description= New Description=2*2P接插件
+Change Component Description : Designator=JPX Old Description= New Description=2P接插件
+Change Component Description : Designator=Speaker Old Description= New Description=2P接插件
+Change Component Description : Designator=SYN6288 Old Description= New Description=2P接插件
+Change Component Description : Designator=X1 Old Description= New Description=2脚无源脚晶振
+Change Component Description : Designator=SYN6288 Old Description= New Description=5P接插件
+Change Component Description : Designator=S1 Old Description= New Description=MTS10x系列3脚扭子开关
+Change Component Description : Designator=USB Old Description= New Description=USB-A型母接口
+Change Component Description : Designator=CON1 Old Description= New Description=低压电源接口
+Change Component Description : Designator=IC1 Old Description= New Description=实时时钟芯片
+Change Component Description : Designator=P5 Old Description= New Description=接插件
+Change Component Description : Designator=P6 Old Description= New Description=接插件
+Change Component Description : Designator=RP1 Old Description= New Description=插件单联电位器
+Change Component Description : Designator=B2 Old Description= New Description=电池
+Change Component Description : Designator=R1 Old Description= New Description=直插色环电阻
+Change Component Description : Designator=R4 Old Description= New Description=直插色环电阻
+Change Component Description : Designator=R5 Old Description= New Description=直插色环电阻
+Change Component Description : Designator=R6 Old Description= New Description=直插色环电阻
+Change Component Library : Designator=IC1 Old Library= New Library=1.1   - IC芯片.SchLib
+Change Component Library : Designator=R1 Old Library= New Library=3.1   - 电阻-电容-电感.SchLib
+Change Component Library : Designator=R4 Old Library= New Library=3.1   - 电阻-电容-电感.SchLib
+Change Component Library : Designator=R5 Old Library= New Library=3.1   - 电阻-电容-电感.SchLib
+Change Component Library : Designator=R6 Old Library= New Library=3.1   - 电阻-电容-电感.SchLib
+Change Component Library : Designator=RP1 Old Library= New Library=3.1   - 电阻-电容-电感.SchLib
+Change Component Library : Designator=CON1 Old Library= New Library=4.1   - 接口类.SchLib
+Change Component Library : Designator=USB Old Library= New Library=4.1   - 接口类.SchLib
+Change Component Library : Designator=JP1 Old Library= New Library=4.5   - 接插件-脚距2.54.SchLib
+Change Component Library : Designator=JPX Old Library= New Library=4.5   - 接插件-脚距2.54.SchLib
+Change Component Library : Designator=Speaker Old Library= New Library=4.5   - 接插件-脚距2.54.SchLib
+Change Component Library : Designator=SYN6288 Old Library= New Library=4.5   - 接插件-脚距2.54.SchLib
+Change Component Library : Designator=SYN6288 Old Library= New Library=4.5   - 接插件-脚距2.54.SchLib
+Change Component Library : Designator=S1 Old Library= New Library=5.1   - 按键-开关.SchLib
+Change Component Library : Designator=X1 Old Library= New Library=10.1 - 保险丝-晶振.SchLib
+Change Component Library : Designator=B2 Old Library= New Library=Component.SchLib
+Change Component Library : Designator=P1 Old Library= New Library=Component.SchLib
+Change Component Library : Designator=P2 Old Library= New Library=Component.SchLib
+Change Component Library : Designator=P3 Old Library= New Library=Component.SchLib
+Change Component Library : Designator=P4 Old Library= New Library=Component.SchLib
+Change Component Library : Designator=P7 Old Library= New Library=Component.SchLib
+Change Component Library : Designator=PD Old Library= New Library=Component.SchLib
+Change Component Library : Designator=P5 Old Library= New Library=fszhang.SchLib
+Change Component Library : Designator=P6 Old Library=fs New Library=fszhang.SchLib
+Added Pin To Net: NetName=NetSpeaker_1 Pin=SYN6288-1
+Added Pin To Net: NetName=GND Pin=SYN6288-2
+Added Pin To Net: NetName=NetSpeaker_2 Pin=SYN6288-2
+Added Room: Name=智能风扇原理图

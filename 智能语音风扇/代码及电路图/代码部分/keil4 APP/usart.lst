@@ -1,0 +1,102 @@
+C51 COMPILER V9.00   USART                                                                 10/01/2018 10:15:36 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE USART
+OBJECT MODULE PLACED IN ..\obj\usart.obj
+COMPILER INVOKED BY: F:\KEIL5\C51\BIN\C51.EXE ..\code\usart.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\code) DEBUG OBJEC
+                    -TEXTEND PRINT(.\usart.lst) OBJECT(..\obj\usart.obj)
+
+line level    source
+
+   1          /***************************飞音云电子****************************
+   2          **  工程名称：YS-V0.7语音识别模块驱动程序
+   3          **      CPU: STC11L08XE
+   4          **      晶振：22.1184MHZ
+   5          **      波特率：9600 bit/S
+   6          **      配套产品信息：YS-V0.7语音识别开发板
+   7          **                http://yuesheng001.taobao.com
+   8          **  作者：zdings
+   9          **  联系：751956552@qq.com
+  10          **  修改日期：2013.9.13
+  11          **  说明：口令模式： 即每次识别时都需要说“小杰”这个口令 ，才能够进行下一级的识别
+  12          /***************************飞音云电子******************************/
+  13          #include "config.h"
+  14          
+  15          #define FOSC 22118400L      //System frequency
+  16          uint32_t baud=9600;           //UART baudrate
+  17          /************************************************************************
+  18          函 数 名： 串口初始化
+  19          功能描述： STC11L08XE 单片机串口初始化函数
+  20          返回函数： none
+  21          其他说明： none
+  22          **************************************************************************/
+  23          void UartIni(void)
+  24          {
+  25   1          SCON = 0x50;            //8-bit variable UART
+  26   1          TMOD = 0x20;            //Set Timer1 as 8-bit auto reload mode
+  27   1          TH1 = TL1 = -(FOSC/12/32/baud); //Set auto-reload vaule
+  28   1          TR1 = 1;                //Timer1 start run
+  29   1          ES = 1;                 //Enable UART interrupt
+  30   1          EA = 1;                 //Open master interrupt switch
+  31   1      }
+  32          /***********************************************************
+  33          * 名    称： 
+  34          * 功    能： 
+  35          * 入口参数： 无 
+  36          * 出口参数：无
+  37          * 说    明：                                     
+  38          **********************************************************/
+  39          void Uart_Isr() interrupt 4 using 1
+  40          {       
+  41   1              if(RI)
+  42   1              {       
+  43   2                        
+  44   2              }
+  45   1      
+  46   1      }
+  47          /************************************************************************
+  48          功能描述：      串口发送一字节数据
+  49          入口参数：      DAT:带发送的数据
+  50          返 回 值：      none
+  51          其他说明：      none
+  52          **************************************************************************/
+  53          void UARTSendByte(uint8_t DAT)
+  54          {
+C51 COMPILER V9.00   USART                                                                 10/01/2018 10:15:36 PAGE 2   
+
+  55   1              ES  =  0;
+  56   1              TI=0;
+  57   1              SBUF = DAT;
+  58   1              while(TI==0);
+  59   1              TI=0;
+  60   1              ES = 1;
+  61   1      }
+  62          /************************************************************************
+  63          功能描述： 串口发送字符串数据
+  64          入口参数：      *DAT：字符串指针
+  65          返 回 值： none
+  66          其他说明： API 供外部使用，直观！
+  67          **************************************************************************/
+  68          void PrintCom(uint8_t *DAT,uint8_t len)
+  69          {
+  70   1              uint8_t i;
+  71   1              for(i=0;i<len;i++)
+  72   1              {
+  73   2                      UARTSendByte(*DAT++);
+  74   2              }       
+  75   1      }
+  76          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    101    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =      2       3
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

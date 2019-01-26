@@ -1,0 +1,170 @@
+C51 COMPILER V9.00   DS1302                                                                10/01/2018 10:18:31 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE DS1302
+OBJECT MODULE PLACED IN ..\obj\DS1302.obj
+COMPILER INVOKED BY: F:\KEIL5\C51\BIN\C51.EXE ..\code\DS1302.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\code) DEBUG OBJE
+                    -CTEXTEND PRINT(.\DS1302.lst) OBJECT(..\obj\DS1302.obj)
+
+line level    source
+
+   1          #include "DS1302.h"
+   2          
+   3          uchar time[]={18,1,10,1,10,19,12};//年周月日时分秒
+   4          uchar write_add[]={0x8c,0x8a,0x88,0x86,0x84,0x82,0x80};
+   5          uchar read_add[]={0x8d,0x8b,0x89,0x87,0x85,0x83,0x81};
+   6          uchar sfm[14];
+   7          
+   8          
+   9          
+  10          void write_ds1302_byte(uchar date)
+  11          {
+  12   1              uchar i;
+  13   1              for(i=0;i<8;i++)
+  14   1              {
+  15   2                      sclk=0;
+  16   2                      io=date&0x01;
+  17   2                      date>>=1;
+  18   2                      sclk=1;                                 
+  19   2              }                       
+  20   1      }
+  21          void write_ds1302(uchar add,uchar date)
+  22          {
+  23   1              rst=0;
+  24   1              _nop_();
+  25   1              _nop_();
+  26   1              _nop_();
+  27   1              sclk=0;
+  28   1              _nop_();
+  29   1              _nop_();
+  30   1              _nop_();
+  31   1              rst=1;
+  32   1              _nop_();
+  33   1              _nop_();
+  34   1              _nop_();
+  35   1              write_ds1302_byte(add);
+  36   1              write_ds1302_byte(date);
+  37   1              rst=0;
+  38   1              _nop_();
+  39   1              _nop_();
+  40   1              _nop_();
+  41   1              io=1;
+  42   1              sclk=1;
+  43   1                              
+  44   1      }
+  45          uchar read_ds1302(uchar add)
+  46          {
+  47   1              uchar i,value;
+  48   1              rst=0;
+  49   1              _nop_();
+  50   1              _nop_();
+  51   1              _nop_();
+  52   1              sclk=0;
+  53   1              _nop_();
+  54   1              _nop_();
+C51 COMPILER V9.00   DS1302                                                                10/01/2018 10:18:31 PAGE 2   
+
+  55   1              _nop_();
+  56   1              rst=1;
+  57   1              _nop_();
+  58   1              _nop_();
+  59   1              _nop_();
+  60   1              write_ds1302_byte(add);
+  61   1              for(i=0;i<8;i++)
+  62   1              {
+  63   2                      io=1;
+  64   2                      value=value>>1;
+  65   2                      sclk=0;
+  66   2                      if(io==1)
+  67   2                      value=value|0x80;
+  68   2                      sclk=1;
+  69   2                      io=0;
+  70   2              }
+  71   1              rst=0;
+  72   1              _nop_();
+  73   1              _nop_();
+  74   1              _nop_();
+  75   1              sclk=0;
+  76   1              _nop_();
+  77   1              _nop_();
+  78   1              _nop_();
+  79   1              sclk=1;
+  80   1              io=1;   
+  81   1              return value;
+  82   1      }
+  83          void set_time()                 //把时间写进去
+  84          {
+  85   1              uchar i,j;
+  86   1              for(i=0;i<7;i++)                //转BCD码
+  87   1              {
+  88   2                      j=time[i]/10;
+  89   2                      time[i]=time[i]%10;
+  90   2                      time[i]=time[i]+j*16;
+  91   2              }
+  92   1              write_ds1302(0x8e,0x00); //去除写保护
+  93   1              for(i=0;i<7;i++)
+  94   1              {
+  95   2                      write_ds1302(write_add[i],time[i]);
+  96   2              }
+  97   1              write_ds1302(0x8e,0x80); //开写保护
+  98   1      }
+  99           void read_time()         //读时间
+ 100          {
+ 101   1              uchar i;
+ 102   1              for(i=0;i<7;i++)
+ 103   1              time[i]=read_ds1302(read_add[i]);       
+ 104   1              
+ 105   1              
+ 106   1              //BCM转十进制数
+ 107   1              sfm[13]=time[6]%16;               //秒
+ 108   1              sfm[12]=time[6]/16;
+ 109   1      
+ 110   1              sfm[11]=time[5]%16;               //分
+ 111   1              sfm[10]=time[5]/16;
+ 112   1      
+ 113   1              sfm[9]=time[4]%16;                //时
+ 114   1              sfm[8]=time[4]/16;
+ 115   1      
+ 116   1              sfm[7]=time[3]%16;              //日
+C51 COMPILER V9.00   DS1302                                                                10/01/2018 10:18:31 PAGE 3   
+
+ 117   1              sfm[6]=time[3]/16;
+ 118   1      
+ 119   1              sfm[5]=time[2]%16;              //月
+ 120   1              sfm[4]=time[2]/16;
+ 121   1      
+ 122   1              sfm[3]=time[1]%16;              //星期
+ 123   1              sfm[2]=time[1]/16;
+ 124   1      
+ 125   1              sfm[1]=time[0]%16;                //年
+ 126   1              sfm[0]=time[0]/16;       
+ 127   1      }
+ 128          
+ 129          
+ 130          
+ 131          uchar Conver_week(uchar cyear,uchar cmonth,uchar cday)
+ 132          {
+ 133   1              uchar temp,week;
+ 134   1              cyear=100+cyear;
+ 135   1              temp=cyear+(cyear/4); //如果为21世纪,年份数加100
+ 136   1              temp=temp%7;    //为节省资源,先进行一次取余,避免数大于0xff,避免使用整型数据
+ 137   1              temp=temp+cday+table_week[cmonth-1]; //日期+年份+所过闰年数+月较正数之和除7
+ 138   1              if(cyear%4==0&&cmonth<3)
+ 139   1                      {temp=temp-1;}//如果是在闰年又不到3月份上述之和要减一天再除7 
+ 140   1              week=temp%7;
+ 141   1              return week;
+ 142   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    434    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     35    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

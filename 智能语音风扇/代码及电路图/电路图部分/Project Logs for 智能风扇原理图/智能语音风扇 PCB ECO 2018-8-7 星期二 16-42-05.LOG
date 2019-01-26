@@ -1,0 +1,108 @@
+Removed Pin From Net: NetName=GND Pin=U1-1
+Removed Pin From Net: NetName=VCC Pin=U1-2
+Removed Pin From Net: NetName=P27 Pin=U1-4
+Removed Pin From Net: NetName=P26 Pin=U1-5
+Removed Pin From Net: NetName=P25 Pin=U1-6
+Removed Pin From Net: NetName=P10 Pin=U1-7
+Removed Pin From Net: NetName=P11 Pin=U1-8
+Removed Pin From Net: NetName=P12 Pin=U1-9
+Removed Pin From Net: NetName=P13 Pin=U1-10
+Removed Pin From Net: NetName=P14 Pin=U1-11
+Removed Pin From Net: NetName=P15 Pin=U1-12
+Removed Pin From Net: NetName=P16 Pin=U1-13
+Removed Pin From Net: NetName=P17 Pin=U1-14
+Removed Pin From Net: NetName=VCC Pin=U1-15
+Removed Pin From Net: NetName=VCC Pin=U1-17
+Removed Pin From Net: NetName=VCC Pin=U1-19
+Removed Pin From Net: NetName=GND Pin=U1-20
+Removed Member From Class: ClassName=智能风扇原理图 Member=U1
+Change Component DesignItemId : Designator=B2 Old DesignItemId= New DesignItemId=Battery
+Change Component DesignItemId : Designator=IC1 Old DesignItemId= New DesignItemId=DS1302
+Change Component DesignItemId : Designator=JPX Old DesignItemId= New DesignItemId=Header 2
+Change Component DesignItemId : Designator=Speaker Old DesignItemId= New DesignItemId=Header 2
+Change Component DesignItemId : Designator=SYN6288 Old DesignItemId= New DesignItemId=Header 2
+Change Component DesignItemId : Designator=JP1 Old DesignItemId= New DesignItemId=Header 2X2
+Change Component DesignItemId : Designator=P5 Old DesignItemId= New DesignItemId=Header 2X2A
+Change Component DesignItemId : Designator=SYN6288 Old DesignItemId= New DesignItemId=Header 5
+Change Component DesignItemId : Designator=S1 Old DesignItemId= New DesignItemId=MTS-10x
+Change Component DesignItemId : Designator=CON1 Old DesignItemId= New DesignItemId=P-DC
+Change Component DesignItemId : Designator=P7 Old DesignItemId= New DesignItemId=Pin 3
+Change Component DesignItemId : Designator=PD Old DesignItemId= New DesignItemId=Pin 4
+Change Component DesignItemId : Designator=P4 Old DesignItemId= New DesignItemId=Pin 5
+Change Component DesignItemId : Designator=P3 Old DesignItemId= New DesignItemId=Pin 7
+Change Component DesignItemId : Designator=P1 Old DesignItemId= New DesignItemId=Pin 8
+Change Component DesignItemId : Designator=P2 Old DesignItemId= New DesignItemId=Pin 8
+Change Component DesignItemId : Designator=R1 Old DesignItemId= New DesignItemId=R-CRR
+Change Component DesignItemId : Designator=R4 Old DesignItemId= New DesignItemId=R-CRR
+Change Component DesignItemId : Designator=R5 Old DesignItemId= New DesignItemId=R-CRR
+Change Component DesignItemId : Designator=R6 Old DesignItemId= New DesignItemId=R-CRR
+Change Component DesignItemId : Designator=RP1 Old DesignItemId= New DesignItemId=RP-ID
+Change Component DesignItemId : Designator=USB Old DesignItemId= New DesignItemId=USB-A/S
+Change Component DesignItemId : Designator=X1 Old DesignItemId= New DesignItemId=XTAL-2P
+Change Component Description : Designator=JP1 Old Description= New Description=2*2P接插件
+Change Component Description : Designator=JPX Old Description= New Description=2P接插件
+Change Component Description : Designator=Speaker Old Description= New Description=2P接插件
+Change Component Description : Designator=SYN6288 Old Description= New Description=2P接插件
+Change Component Description : Designator=X1 Old Description= New Description=2脚无源脚晶振
+Change Component Description : Designator=SYN6288 Old Description= New Description=5P接插件
+Change Component Description : Designator=S1 Old Description= New Description=MTS10x系列3脚扭子开关
+Change Component Description : Designator=USB Old Description= New Description=USB-A型母接口
+Change Component Description : Designator=CON1 Old Description= New Description=低压电源接口
+Change Component Description : Designator=IC1 Old Description= New Description=实时时钟芯片
+Change Component Description : Designator=P5 Old Description= New Description=接插件
+Change Component Description : Designator=P6 Old Description= New Description=接插件
+Change Component Description : Designator=RP1 Old Description= New Description=插件单联电位器
+Change Component Description : Designator=B2 Old Description= New Description=电池
+Change Component Description : Designator=R1 Old Description= New Description=直插色环电阻
+Change Component Description : Designator=R4 Old Description= New Description=直插色环电阻
+Change Component Description : Designator=R5 Old Description= New Description=直插色环电阻
+Change Component Description : Designator=R6 Old Description= New Description=直插色环电阻
+Change Component Library : Designator=IC1 Old Library=1.1   - IC芯? New Library=1.1   - IC芯片.SchLib
+Change Component Library : Designator=RP1 Old Library=3.1   - 电阻-? New Library=3.1   - 电阻-电容-电感.SchLib
+Change Component Library : Designator=R1 Old Library=3.1   - 电阻-电 New Library=3.1   - 电阻-电容-电感.SchLib
+Change Component Library : Designator=R4 Old Library=3.1   - 电阻-电 New Library=3.1   - 电阻-电容-电感.SchLib
+Change Component Library : Designator=R5 Old Library=3.1   - 电阻-电 New Library=3.1   - 电阻-电容-电感.SchLib
+Change Component Library : Designator=R6 Old Library=3.1   - 电阻-电 New Library=3.1   - 电阻-电容-电感.SchLib
+Change Component Library : Designator=USB Old Library=4.1   - New Library=4.1   - 接口类.SchLib
+Change Component Library : Designator=CON1 Old Library=4.1   - 接口 New Library=4.1   - 接口类.SchLib
+Change Component Library : Designator=JP1 Old Library=4.5   - 接插件- New Library=4.5   - 接插件-脚距2.54.SchLib
+Change Component Library : Designator=JPX Old Library=4.5   - 接插件- New Library=4.5   - 接插件-脚距2.54.SchLib
+Change Component Library : Designator=SYN6288 Old Library=4.5   - 接插件- New Library=4.5   - 接插件-脚距2.54.SchLib
+Change Component Library : Designator=SYN6288 Old Library=4.5   - 接插件- New Library=4.5   - 接插件-脚距2.54.SchLib
+Change Component Library : Designator=Speaker Old Library=4.5   - 接插件-脚距 New Library=4.5   - 接插件-脚距2.54.SchLib
+Change Component Library : Designator=X1 Old Library=10.1 - 保险? New Library=10.1 - 保险丝-晶振.SchLib
+Change Component Library : Designator=P1 Old Library=Comp New Library=Component.SchLib
+Change Component Library : Designator=P2 Old Library=Comp New Library=Component.SchLib
+Change Component Library : Designator=P3 Old Library=Comp New Library=Component.SchLib
+Change Component Library : Designator=P4 Old Library=Comp New Library=Component.SchLib
+Change Component Library : Designator=P7 Old Library=Comp New Library=Component.SchLib
+Change Component Library : Designator=PD Old Library=Comp New Library=Component.SchLib
+Added Component: Designator=LCD12864(HDR2.54-M-LI-20P)
+Added Pin To Net: NetName=GND Pin=LCD12864-1
+Added Pin To Net: NetName=VCC Pin=LCD12864-2
+Added Pin To Net: NetName=P27 Pin=LCD12864-4
+Added Pin To Net: NetName=P26 Pin=LCD12864-5
+Added Pin To Net: NetName=P25 Pin=LCD12864-6
+Added Pin To Net: NetName=P10 Pin=LCD12864-7
+Added Pin To Net: NetName=P11 Pin=LCD12864-8
+Added Pin To Net: NetName=P12 Pin=LCD12864-9
+Added Pin To Net: NetName=P13 Pin=LCD12864-10
+Added Pin To Net: NetName=P14 Pin=LCD12864-11
+Added Pin To Net: NetName=P15 Pin=LCD12864-12
+Added Pin To Net: NetName=P16 Pin=LCD12864-13
+Added Pin To Net: NetName=P17 Pin=LCD12864-14
+Added Pin To Net: NetName=VCC Pin=LCD12864-15
+Added Pin To Net: NetName=VCC Pin=LCD12864-17
+Added Pin To Net: NetName=VCC Pin=LCD12864-19
+Added Pin To Net: NetName=GND Pin=LCD12864-20
+Added Pin To Net: NetName=NetSpeaker_1 Pin=SYN6288-1
+Added Pin To Net: NetName=GND Pin=SYN6288-2
+Added Pin To Net: NetName=NetSpeaker_2 Pin=SYN6288-2
+Added Pin To Net: NetName=NetLCD12864_3 Pin=LCD12864-3
+Added Pin To Net: NetName=NetLCD12864_3 Pin=RP1-2
+Added Net: Name=NetLCD12864_3
+Added Pin To Net: NetName=NetLCD12864_18 Pin=LCD12864-18
+Added Pin To Net: NetName=NetLCD12864_18 Pin=RP1-3
+Added Net: Name=NetLCD12864_18
+Added Member To Class: ClassName=智能风扇原理图 Member=Component LCD12864 HDR-1X20
+Added Room: Name=智能风扇原理图
