@@ -1,4 +1,5 @@
 ﻿# Intelligent-voice-fan
+视频地址：https://v.youku.com/v_show/id_XNDEyNzQ3MDE3Ng==.html
 一个智能语音风扇项目的设计，具体功能如下：
 （1）语音控制风速
 （2）语音播报
