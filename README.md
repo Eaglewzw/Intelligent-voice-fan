@@ -57,10 +57,20 @@
 
 1.  **克隆仓库**
     ```bash
-    git clone [https://github.com/your-username/Intelligent-voice-fan.git](https://github.com/your-username/Intelligent-voice-fan.git)
+    git clone [https://github.com/Eaglewzw/Intelligent-voice-fan.git](https://github.com/Eaglewzw/Intelligent-voice-fan.git)
     ```
 2.  **硬件连接**
     * 按照上述引脚说明连接各模块。
 3.  **烧录程序**
     * 使用 Keil/Arduino IDE 打开工程文件。
-    * 编译并
+    * 编译并下载至开发板。
+4.  **开始使用**
+    * 上电后，对着模块说出唤醒词（如“小智小智”），即可开始控制。
+
+## 🤝 贡献与反馈
+
+如果您有任何改进建议或发现了 Bug，欢迎提交 Issue 或 Pull Request。
+
+## 📄 版权说明
+
+本项目采用 MIT 协议开源。
