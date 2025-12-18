@@ -1,6 +1,0 @@
-"..\obj\main.obj",
-"..\obj\LDChip.obj",
-"..\obj\Reg_RW.obj",
-"..\obj\usart.obj" 
-TO "..\obj\YS-V0.7" 
-PRINT(".\YS-V0.m51") RAMSIZE(256) 
